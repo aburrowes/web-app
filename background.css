@@ -1,0 +1,49 @@
+body {
+
+    background-color: #fff;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    height: 100vh;
+
+    flex-direction: column;
+
+}
+
+*{
+
+    font-family: 'Times New Roman', Times, serif;
+
+    box-sizing: padding-box;
+
+}
+h1 {
+    text-align: center;
+
+    color: rgb(10, 9, 9);
+
+}
+
+a {
+
+    float: right;
+
+    background: rgb(225, 31, 31);
+
+    padding: 10px 15px;
+
+    color: #fff;
+
+    border-radius: 10px;
+
+    margin-right: 10px;
+
+    border: none;
+
+    text-decoration: none;
+
+}
