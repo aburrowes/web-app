@@ -25,8 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         }
         
         $sql = "SELECT id, shelfnumber, temperature, led FROM TempData WHERE id=" . $id . " ORDER BY id DESC"; 
-        
-        // REMOVE THIS
         echo   '<table cellspacing="5" cellpadding="5">
                 <tr> 
                     <td>ID</td> 
@@ -42,20 +40,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 $temperature = $row["temperature"];
                 $led = $row["led"];
                 
-                // Replace this with non-HTML code
                 echo '<tr>
                         <td>' . $row_id . '</td>
                         <td>' . $shelfnumber . '</td>
                         <td>' . $temperature . '</td>
                         <td>' . $led . '</td>
                       </tr>';
-                //Something like this:
-                /*
-                echo $row_id . ":" . $shelf_number . ":" . $temperature . ":" . $led;
-                */
             }
-            
-            
             $result->free();
         }
         else {

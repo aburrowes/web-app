@@ -18,7 +18,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         
         <Right>
         <a href="esp-data.php">Inventory</a>
-        <a href="send-data.php">Send Configuration</a>
+        <a href="send-data.html">Send Configuration</a>
     </body>
     <?php
 }
