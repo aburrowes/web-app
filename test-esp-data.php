@@ -28,7 +28,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT id, shelfnumber, temperature, led FROM TempData ORDER BY id DESC";
+$sql = "SELECT id, shelfnumber, temperature, led FROM TempData ORDER BY id DESC LIMIT 1";
 
 echo '<table cellspacing="5" cellpadding="5">
       <tr> 
@@ -37,7 +37,7 @@ echo '<table cellspacing="5" cellpadding="5">
         <td>Temperature</td> 
         <td>LED</td> 
       </tr>';
- 
+
 if ($result = $conn->query($sql)) {
     while ($row = $result->fetch_assoc()) {
         $row_id = $row["id"];
@@ -59,6 +59,31 @@ if ($result = $conn->query($sql)) {
     }
     $result->free();
 }
+
+$sql = "SELECT id, shelfnumber, temperature, led FROM TempData2 ORDER BY id DESC LIMIT 1";
+
+if ($result = $conn->query($sql)) {
+    while ($row = $result->fetch_assoc()) {
+        $row_id2 = $row["id"];
+        $shelfnumber2 = $row["shelfnumber"];
+        $temperature2 = $row["temperature"];
+        $led2 = $row["led"];
+        // Uncomment to set timezone to - 1 hour (you can change 1 to any number)
+        //$row_reading_time = date("Y-m-d H:i:s", strtotime("$row_reading_time - 1 hours"));
+      
+        // Uncomment to set timezone to + 4 hours (you can change 4 to any number)
+        //$row_reading_time = date("Y-m-d H:i:s", strtotime("$row_reading_time + 4 hours"));
+      
+        echo '<tr> 
+                <td>' . $row_id2 . '</td> 
+                <td>' . $shelfnumber2 . '</td> 
+                <td>' . $temperature2 . '</td> 
+                <td>' . $led2 . '</td> 
+              </tr>';
+    }
+    $result->free();
+}
+
 
 $conn->close();
 ?> 

@@ -24,16 +24,14 @@ $password = "";
 // If you change this value, the ESP32 sketch needs to match
 $api_key_value = "tPmAT5Ab3j7F9";
 
-$api_key= $sensor = $location = $value1 = $value2 = $value3 = "";
+$api_key= $shelfnumber = $temperature = $led = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $api_key = test_input($_POST["api_key"]);
     if($api_key == $api_key_value) {
-        $sensor = test_input($_POST["sensor"]);
-        $location = test_input($_POST["location"]);
-        $value1 = test_input($_POST["value1"]);
-        $value2 = test_input($_POST["value2"]);
-        $value3 = test_input($_POST["value3"]);
+        $shelfnumber = test_input($_POST["shelfnumber"]);
+        $temperature = test_input($_POST["temperature"]);
+        $led = test_input($_POST["led"]);
         
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -42,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Connection failed: " . $conn->connect_error);
         } 
         
-        $sql = "INSERT INTO SensorData (sensor, location, value1, value2, value3)
-        VALUES ('" . $sensor . "', '" . $location . "', '" . $value1 . "', '" . $value2 . "', '" . $value3 . "')";
+        $sql = "INSERT INTO TempData (shelfnumber, temperature, led)
+        VALUES ('" . $shelfnumber . "', '" . $temperature . "', '" . $led . "')"; //This is the line with the error
         
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
@@ -69,3 +67,5 @@ function test_input($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
+
+?>

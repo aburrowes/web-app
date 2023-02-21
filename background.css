@@ -34,7 +34,7 @@ a {
 
     background: rgb(225, 31, 31);
 
-    padding: 10px 15px;
+    padding: 10px;
 
     color: #fff;
 
@@ -46,4 +46,22 @@ a {
 
     text-decoration: none;
 
+}
+
+b {
+    float: right;
+
+    background: rgb(80, 225, 31);
+
+    padding: 10px;
+
+    color: #fff;
+
+    border-radius: 10px;
+
+    margin-right: 10px;
+
+    border: none;
+
+    text-decoration: none;
 }

@@ -53,7 +53,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
                 $_SESSION['id'] = $row['id'];
 
-                header("Location: home.php");
+                header("Location: home.php"); //change back to home.php
 
                 exit();
 
