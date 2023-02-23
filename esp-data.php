@@ -12,10 +12,12 @@
   copies or substantial portions of the Software.
 */
 
+//This will be used to display entire inventory table
+
 $servername = "localhost";
 
 // REPLACE with your Database name
-$dbname = "esp_3866_db";
+$dbname = "wherehouse_data";
 // REPLACE with Database user
 $username = "root";
 // REPLACE with Database user password
@@ -28,22 +30,22 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT id, shelfnumber, temperature, led FROM TempData ORDER BY id DESC";
+$sql = "SELECT device, stock, name, date FROM inventory ORDER BY date DESC";
 
 echo '<table cellspacing="5" cellpadding="5">
       <tr> 
-        <td>ID</td> 
-        <td>Shelf Number</td> 
-        <td>Temperature</td> 
-        <td>LED</td> 
+        <td>Device</td> 
+        <td>Stock</td> 
+        <td>Name</td> 
+        <td>Date & Time</td> 
       </tr>';
  
 if ($result = $conn->query($sql)) {
     while ($row = $result->fetch_assoc()) {
-        $row_id = $row["id"];
-        $shelfnumber = $row["shelfnumber"];
-        $temperature = $row["temperature"];
-        $led = $row["led"];
+        $row_id = $row["device"];
+        $stock = $row["stock"];
+        $name = $row["name"];
+        $led = $row["date"];
         // Uncomment to set timezone to - 1 hour (you can change 1 to any number)
         //$row_reading_time = date("Y-m-d H:i:s", strtotime("$row_reading_time - 1 hours"));
       
@@ -52,8 +54,8 @@ if ($result = $conn->query($sql)) {
       
         echo '<tr> 
                 <td>' . $row_id . '</td> 
-                <td>' . $shelfnumber . '</td> 
-                <td>' . $temperature . '</td> 
+                <td>' . $stock . '</td> 
+                <td>' . $name . '</td> 
                 <td>' . $led . '</td> 
               </tr>';
     }

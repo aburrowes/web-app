@@ -4,7 +4,7 @@
     $unmae = "root";
     $password = "";
 
-    $db_name = "esp_3866_db";
+    $db_name = "wherehouse_data";
 
     $conn = mysqli_connect($sname, $unmae, $password, $db_name);
 

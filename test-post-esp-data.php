@@ -1,4 +1,4 @@
-<?php
+<?php //This will be used for sending configuration
 
 /*
   Rui Santos
@@ -14,7 +14,7 @@
 $servername = "localhost";
 
 // REPLACE with your Database name
-$dbname = "esp_3866_db";
+$dbname = "wherehouse_data";
 // REPLACE with Database user
 $username = "root";
 // REPLACE with Database user password
@@ -25,14 +25,14 @@ $password = "";
 $api_key_value = "tPmAT5Ab3j7F9";
 
 $api_key = $_GET['api_key'];
-$shelfnumber = $_GET['shelfnumber'];
-$temperature = $_GET['temperature'];
-$led = $_GET['led'];
+$device = $_GET['device'];
+$item = $_GET['item'];
+$date = date('Y-m-d H:i:s');
 
 //$api_key = test_input($_POST["api_key"]);
 if($api_key == $api_key_value) {
-    //$shelfnumber = test_input($_POST["shelfnumber"]);
-    //$temperature = test_input($_POST["temperature"]);
+    //$device = test_input($_POST["device"]);
+    //$item = test_input($_POST["item"]);
     //$led = test_input($_POST["led"]);
         
     // Create connection
@@ -42,8 +42,8 @@ if($api_key == $api_key_value) {
         die("Connection failed: " . $conn->connect_error);
     } 
         
-    $sql = "INSERT INTO TempData2 (shelfnumber, temperature, led)
-    VALUES ('" . $shelfnumber . "', '" . $temperature . "', '" . $led . "')"; //This is the line with the error
+    $sql = "INSERT INTO config (device, item, date)
+    VALUES ('" . $device . "', '" . $item . "', '" . $date . "')"; //This is the line with the error
         
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";

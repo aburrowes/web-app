@@ -1,4 +1,4 @@
-<?php
+<?php //This is used for posting data from esp8266 to mysql
 
 /*
   Rui Santos
@@ -14,7 +14,7 @@
 $servername = "localhost";
 
 // REPLACE with your Database name
-$dbname = "esp_3866_db";
+$dbname = "wherehouse_data";
 // REPLACE with Database user
 $username = "root";
 // REPLACE with Database user password
@@ -23,16 +23,17 @@ $password = "";
 // Keep this API Key value to be compatible with the ESP32 code provided in the project page. 
 // If you change this value, the ESP32 sketch needs to match
 $api_key_value = "tPmAT5Ab3j7F9";
+$date = date('Y-m-d H:i:s');
 
-$api_key= $shelfnumber = $temperature = $led = "";
+$api_key= $device = $stock = $name = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $api_key = test_input($_POST["api_key"]);
     if($api_key == $api_key_value) {
-        $shelfnumber = test_input($_POST["shelfnumber"]);
-        $temperature = test_input($_POST["temperature"]);
-        $led = test_input($_POST["led"]);
-        
+        $device = test_input($_POST["device"]);
+        $stock = test_input($_POST["stock"]);
+        $name = test_input($_POST["name"]);
+
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
         // Check connection
@@ -40,8 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Connection failed: " . $conn->connect_error);
         } 
         
-        $sql = "INSERT INTO TempData (shelfnumber, temperature, led)
-        VALUES ('" . $shelfnumber . "', '" . $temperature . "', '" . $led . "')"; //This is the line with the error
+        $sql = "INSERT INTO inventory (device, stock, name, date)
+        VALUES ('" . $device . "', '" . $stock . "', '" . $name . "', '" . $date . "')"; //This is the line with the error
         
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
