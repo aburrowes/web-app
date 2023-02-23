@@ -12,6 +12,8 @@ $api_key = $item = $name = $weight = $tare = $date = "";
 
 $device = "";
 
+$id = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $api_key = test_input($_GET["api_key"]);
     if ($api_key == $api_key_value) {
@@ -36,16 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             echo "Something went wrong 1";
         }
         
-        $conn->close();
-
-        $sql = "SELECT item, name, weight, tare FROM data WHERE item=" . $item . ""; 
-        echo '<table cellspacing="5" cellpadding="5">
-                <tr> 
-                    <td>Item</td> 
-                    <td>Name</td> 
-                    <td>Weight</td> 
-                    <td>Tare</td> 
-                </tr>';
+        $id = $item;
+        $sql = "SELECT item, name, weight, tare FROM data WHERE item='" . $id . "'"; 
                 
         if ($result = $conn->query($sql)) {
             while ($row = $result->fetch_assoc()) {
@@ -54,12 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 $weight = $row["weight"];
                 $tare = $row["tare"];
                 
-                echo '<tr>
-                        <td>' . $item . '</td>
-                        <td>' . $name . '</td>
-                        <td>' . $weight . '</td>
-                        <td>' . $tare . '</td>
-                      </tr>';
+                echo ". $item . | . $name . | . $weight . | . $tare .";
             }
             $result->free();
         }
