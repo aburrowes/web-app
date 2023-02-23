@@ -17,7 +17,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         <a href="logout.php">Logout</a>
         
         <Right>
-        <a href="esp-data.php">Inventory</a>
+        <a href="inventory.php">Inventory</a>
         <a href="send-data.html">Send Configuration</a>
     </body>
     <?php

@@ -1,5 +1,6 @@
 <!DOCTYPE html> 
-<html><body>
+<html>
+<body style="background-color:white;">
 <?php
 /*
   Rui Santos
@@ -90,5 +91,6 @@ if ($result = $conn->query($sql)) {
 $conn->close();
 ?> 
 </table>
+<a href="esp-data.php">Inventory</a>
 </body>
 </html>
