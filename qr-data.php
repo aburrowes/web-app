@@ -1,5 +1,5 @@
 <?php //This will be used for sending configuration
-
+//http://192.168.1.81/demo/qr-data.php?&api_key=tPmAT5Ab3j7F9&device=59&item=DD
 /*
   Rui Santos
   Complete project details at https://RandomNerdTutorials.com/esp32-esp8266-mysql-database-php/
@@ -43,7 +43,7 @@ if($api_key == $api_key_value) {
     } 
         
     $sql = "INSERT INTO config (device, item, date)
-    VALUES ('" . $device . "', '" . $item . "', '" . $date . "')"; //This is the line with the error
+    VALUES ('" . $device . "', '" . $item . "', '" . $date . "')"; 
         
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
