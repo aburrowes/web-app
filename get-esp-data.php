@@ -2,20 +2,20 @@
 
 $servername = "localhost";
 
-$dbname = "esp_3866_db";
+$dbname = "wherehouse_data";
 $username = "root";
 $password = "";
 
 $api_key_value = "tPmAT5Ab3j7F9";
 
-$api_key = $shelfnumber = $temperature = $led = "";
+$api_key = $item = $name = $weight = $tare = $date = "";
 
-$id = "";
+$device = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $api_key = test_input($_GET["api_key"]);
     if ($api_key == $api_key_value) {
-        $id = test_input($_GET["id"]);
+        $device = test_input($_GET["device"]);
         
         // Set up connection to SQL
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -24,27 +24,41 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             die("Connection failed: " . $conn->connect_error);
         }
         
-        $sql = "SELECT id, shelfnumber, temperature, led FROM TempData WHERE id=" . $id . " ORDER BY id DESC"; 
-        echo   '<table cellspacing="5" cellpadding="5">
+        $sql = "SELECT item FROM config WHERE device=" . $device . " ORDER BY date DESC limit 1"; 
+                
+        if ($result = $conn->query($sql)) {
+            while ($row = $result->fetch_assoc()) {
+                $item = $row["item"];
+            }
+            $result->free();
+        }
+        else {
+            echo "Something went wrong 1";
+        }
+        
+        $conn->close();
+
+        $sql = "SELECT item, name, weight, tare FROM data WHERE item=" . $item . ""; 
+        echo '<table cellspacing="5" cellpadding="5">
                 <tr> 
-                    <td>ID</td> 
-                    <td>Shelf Number</td> 
-                    <td>Temperature</td> 
-                    <td>LED</td> 
+                    <td>Item</td> 
+                    <td>Name</td> 
+                    <td>Weight</td> 
+                    <td>Tare</td> 
                 </tr>';
                 
         if ($result = $conn->query($sql)) {
             while ($row = $result->fetch_assoc()) {
-                $row_id = $row["id"];
-                $shelfnumber = $row["shelfnumber"];
-                $temperature = $row["temperature"];
-                $led = $row["led"];
+                $item = $row["item"];
+                $name = $row["name"];
+                $weight = $row["weight"];
+                $tare = $row["tare"];
                 
                 echo '<tr>
-                        <td>' . $row_id . '</td>
-                        <td>' . $shelfnumber . '</td>
-                        <td>' . $temperature . '</td>
-                        <td>' . $led . '</td>
+                        <td>' . $item . '</td>
+                        <td>' . $name . '</td>
+                        <td>' . $weight . '</td>
+                        <td>' . $tare . '</td>
                       </tr>';
             }
             $result->free();
