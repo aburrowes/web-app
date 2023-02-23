@@ -1,4 +1,5 @@
 <?php
+////Code was helped written with https://www.simplilearn.com/tutorials/php-tutorial/php-login-form
 session_start();
 
 if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
