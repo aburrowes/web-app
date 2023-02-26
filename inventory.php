@@ -63,7 +63,7 @@ if ($result = $conn->query($sql)) {
     $result->free();
 }
 
-$sql = "SELECT device, stock, name, date FROM inventory WHERE device = 'Two' ORDER BY date DESC LIMIT 1";
+$sql = "SELECT device, stock, name, date FROM inventory WHERE device = 2 ORDER BY date DESC LIMIT 1";
 
 if ($result = $conn->query($sql)) {
     while ($row = $result->fetch_assoc()) {

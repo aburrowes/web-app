@@ -6,7 +6,7 @@ $dbname = "wherehouse_data";
 $username = "root";
 $password = "";
 
-$api_key_value = "tPmAT5Ab3j7F9";
+$api_key_value = "tpmat5ab3j7f9";
 
 $api_key = $item = $name = $weight = $tare = $date = "";
 
