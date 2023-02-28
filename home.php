@@ -2,7 +2,7 @@
 ////Code was helped written with https://www.simplilearn.com/tutorials/php-tutorial/php-login-form
 session_start();
 
-if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
+//if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     ?>
 
     <!DOCTYPE html>
@@ -13,7 +13,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         <link rel="stylesheet" type="text/css" href="background.css">
     </head>
     <body>
-        <h1>Hello <?php echo $_SESSION['user_name']; ?>. Please select one of the following:</h1>
+        <h1>Hello, welcome to Wherehouse. Please select one of the following:</h1>
         <Left>
         <a href="logout.php">Logout</a>
         
@@ -22,8 +22,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         <a href="send-data.html">Send Configuration</a>
     </body>
     <?php
-}
-else {
-    header("Location: index.php");
-    exit();
-}
+//}
+//else {
+    //header("Location: index.php");
+    //exit();
+//}

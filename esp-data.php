@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html><body>
+<head>
+  <title>Past Inventory Page</title>
+  <link rel="stylesheet" type="text/css" href="background.css">
+  <div id="container">
+    <a href="logout.php">Logout</a>
+    <a href="inventory.php">Inventory</a>
+    <a href="home.php">Home</a>
+  </div>
+</head>
 <?php
 /*
   Rui Santos

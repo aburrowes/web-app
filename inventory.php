@@ -1,6 +1,15 @@
 <!DOCTYPE html> 
 <html>
 <body style="background-color:white;">
+<head>
+  <title>Stock Page</title>
+  <link rel="stylesheet" type="text/css" href="background.css">
+  <div id="container">
+    <a href="logout.php">Logout</a>
+    <a href="esp-data.php">Past Inventory</a>
+    <a href="home.php">Home</a>
+  </div>
+</head>
 <?php
 /*
   Rui Santos
@@ -91,6 +100,5 @@ if ($result = $conn->query($sql)) {
 $conn->close();
 ?> 
 </table>
-<a href="esp-data.php">Inventory</a>
 </body>
 </html>

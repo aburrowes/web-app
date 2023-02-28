@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html><body>
+<head>
+  <title>Post Config</title>
+  <link rel="stylesheet" type="text/css" href="background.css">
+  <div id="container">
+    <a href="logout.php">Logout</a>
+    <a href="send-data.html">Send Config</a>
+    <a href="home.php">Home</a>
+  </div>
+</head>
 <?php //This will be used for sending configuration
 //http://192.168.1.81/demo/qr-data.php?&api_key=tPmAT5Ab3j7F9&device=59&item=DD
 /*
@@ -68,3 +79,4 @@ function test_input($data) {
 }
 
 ?>
+</html>
