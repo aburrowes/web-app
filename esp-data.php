@@ -8,6 +8,7 @@
     <a href="inventory.php">Inventory</a>
     <a href="home.php">Home</a>
   </div>
+  <h1>Past Stock</h1>
 </head>
 <?php
 /*
@@ -43,10 +44,10 @@ $sql = "SELECT device, stock, name, date FROM inventory ORDER BY date DESC";
 
 echo '<table cellspacing="5" cellpadding="5">
       <tr> 
-        <td>Device</td> 
-        <td>Stock</td> 
-        <td>Name</td> 
-        <td>Date & Time</td> 
+        <th>Device</th> 
+        <th>Stock</th> 
+        <th>Name</th> 
+        <th>Date & Time</th> 
       </tr>';
  
 if ($result = $conn->query($sql)) {

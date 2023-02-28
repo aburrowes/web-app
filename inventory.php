@@ -9,6 +9,7 @@
     <a href="esp-data.php">Past Inventory</a>
     <a href="home.php">Home</a>
   </div>
+  <h1>Current Stock</h1>
 </head>
 <?php
 /*
@@ -44,10 +45,10 @@ $sql = "SELECT device, stock, name, date FROM inventory WHERE device = 1 ORDER B
 
 echo '<table cellspacing="5" cellpadding="5">
       <tr> 
-        <td>Device</td> 
-        <td>Stock</td> 
-        <td>Name</td> 
-        <td>Date</td> 
+        <th>Device</th> 
+        <th>Stock</th> 
+        <th>Name</th> 
+        <th>Date</th> 
       </tr>';
 
 if ($result = $conn->query($sql)) {
