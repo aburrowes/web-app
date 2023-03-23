@@ -8,9 +8,10 @@
     <a href="send-data.html">Send Config</a>
     <a href="home.php">Home</a>
   </div>
+  
 </head>
 <?php //This will be used for sending configuration
-//http://192.168.1.81/demo/qr-data.php?&api_key=tPmAT5Ab3j7F9&device=59&item=DD
+//http://192.168.1.81/demo/qr-data.php?&api_key=tpmat5ab3j7f9&device=59&item=cc
 /*
   Rui Santos
   Complete project details at https://RandomNerdTutorials.com/esp32-esp8266-mysql-database-php/
@@ -57,7 +58,7 @@ if($api_key == $api_key_value) {
     VALUES ('" . $device . "', '" . $item . "', '" . $date . "')"; 
         
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+      echo "'<h1>New configuration for device " . $device . " received successfully!</h1>'";
     } 
     else {
         echo "Error: " . $sql . "<br>" . $conn->error;
