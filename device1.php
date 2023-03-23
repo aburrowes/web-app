@@ -8,7 +8,7 @@
       <a href="logout.php">Logout</a>
       <a href="home.php">Home</a>
     </div>
-    <h1>Scan Item QR Code to Device 1 or Enter Manually Below!</h1>
+    <h1>Scan Item QR Code to Device 1 or Enter Manually Below! </h1>
   </head>
   <head>
     <meta charset="utf-8">
