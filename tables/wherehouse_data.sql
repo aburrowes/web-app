@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 09, 2023 at 01:34 PM
+-- Generation Time: Mar 09, 2023 at 01:43 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -20,6 +20,51 @@ SET time_zone = "+00:00";
 --
 -- Database: `wherehouse_data`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `config`
+--
+
+CREATE TABLE `config` (
+  `id` int(11) NOT NULL,
+  `device` varchar(10) NOT NULL,
+  `item` varchar(10) NOT NULL,
+  `date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `config`
+--
+
+INSERT INTO `config` (`id`, `device`, `item`, `date`) VALUES
+(26, '1', 'aa', '2023-02-26 16:01:12'),
+(30, '1', 'bb', '2023-02-26 18:52:00'),
+(31, '1', 'aa', '2023-02-28 12:15:39'),
+(32, '1', 'bb', '2023-02-28 12:18:07'),
+(34, '59', 'cc', '2023-03-09 13:13:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data`
+--
+
+CREATE TABLE `data` (
+  `item` varchar(10) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `weight` float NOT NULL,
+  `tare` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `data`
+--
+
+INSERT INTO `data` (`item`, `name`, `weight`, `tare`) VALUES
+('aa', 'Paper Weight', 10.05, 5.01),
+('bb', 'Box of Resistors', 5.53, 1.93);
 
 -- --------------------------------------------------------
 
@@ -59,9 +104,41 @@ INSERT INTO `inventory` (`id`, `device`, `stock`, `name`, `date`) VALUES
 (18, '1', 100, 'Widgets', '2023-02-26 17:28:31'),
 (19, '1', 345, 'DEMONSTRATIONS', '2023-02-26 17:29:57');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `user_name`, `password`) VALUES
+(1, 'admin', 'password'),
+(2, 'aburrowe', '12345678');
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `config`
+--
+ALTER TABLE `config`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `data`
+--
+ALTER TABLE `data`
+  ADD PRIMARY KEY (`item`);
 
 --
 -- Indexes for table `inventory`
@@ -70,14 +147,32 @@ ALTER TABLE `inventory`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `config`
+--
+ALTER TABLE `config`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
