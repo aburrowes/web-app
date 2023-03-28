@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 $weight = $row["weight"];
                 $tare = $row["tare"];
                 
-                echo ". $item . | . $name . | . $weight . | . $tare .";
+                echo "$item|$name|$weight|$tare";
             }
             $result->free();
         }
