@@ -15,10 +15,10 @@
     <title>QR Code Scanner</title>
   </head>
   <body>
-    <video id="preview"></video>
+    <video playsinline controls="true" id="preview"></video>
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <script type="text/javascript">
-      var scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+      var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror:false });
       scanner.addListener('scan', function(content) {
         var url = content.toLowerCase();
         if (url !== '') {
@@ -29,7 +29,9 @@
         }
       });
       Instascan.Camera.getCameras().then(function (cameras) {
-        if (cameras.length > 0) {
+        if (cameras.length > 1) {
+          scanner.start(cameras[1]);
+        } else if(cameras.length > 0) {
           scanner.start(cameras[0]);
         } else {
           console.error('No cameras found.');

@@ -19,7 +19,7 @@ session_start();
         
         <Right>
         <a href="inventory.php">Inventory</a>
-        <a href="send-data.html">Send Configuration</a>
+        <a href="https://192.168.1.81/demo/send-data.html">Send Configuration</a>
     </body>
     <?php
 //}
