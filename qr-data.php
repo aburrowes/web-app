@@ -5,7 +5,7 @@
   <link rel="stylesheet" type="text/css" href="background.css">
   <div id="container">
     <a href="logout.php">Logout</a>
-    <a href="send-data.html">Send Config</a>
+    <a href="https://192.168.1.102/demo/configuration.html">Send Config</a>
     <a href="home.php">Home</a>
   </div>
   

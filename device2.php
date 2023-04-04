@@ -8,55 +8,59 @@
       <a href="logout.php">Logout</a>
       <a href="home.php">Home</a>
     </div>
-    <h1>Scan Item QR Code to Device 2 or Enter Manually Below!</h1>
+    <h1>Scan Item QR Code to Device 2! </h1>
   </head>
   <head>
     <meta charset="utf-8">
     <title>QR Code Scanner</title>
   </head>
   <body>
-    <video id="preview"></video>
+    <video playsinline controls="true" id="preview"></video>
+    <select id="camera-select"></select>
+    <button id="start-button">Start Scanning</button>
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <script type="text/javascript">
-      var scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-      scanner.addListener('scan', function(content) {
-        var url = content.toLowerCase();
-        if (url !== '') {
-          window.location.href = 'http://192.168.1.102/demo/qr-data.php?&api_key=tpmat5ab3j7f9&device=2&item=' + encodeURIComponent(url); //192.168.1.102
-        } 
-        else {
-          alert('Invalid QR code content: ' + content);
-        }
-      });
-      Instascan.Camera.getCameras().then(function (cameras) {
+      var scanner = null;
+      var selectedCameraId = null;
+      var cameras = [];
+    
+      Instascan.Camera.getCameras().then(function (availableCameras) {
+        cameras = availableCameras;
         if (cameras.length > 0) {
-          scanner.start(cameras[0]);
+          cameras.forEach(function (camera) {
+            var option = document.createElement('option');
+            option.value = camera.id;
+            option.text = camera.name;
+            document.querySelector('#camera-select').appendChild(option);
+          });
+          selectedCameraId = cameras[0].id;
         } else {
           console.error('No cameras found.');
         }
       }).catch(function (e) {
         console.error(e);
       });
-    </script>
-    <strong><center>If the QR scanner does not open please refresh the page if on PC or allow access to use camera!</center></strong> 
-    <br>
-    <strong><center>If on mobile device, please enter the item id in the form below!</center></strong>
-    <form method="GET" action="" onsubmit="return handleFormSubmit(this);">
-        <label for="input-text">Enter device id:</label>
-        <input type="text" id="input-text" name="text">
-        <br>
-        <button type="submit">Submit</button>
-    </form>
-
-    <script>
-      function handleFormSubmit(form) {
-        const text = form.elements.text.value.trim();
-        if (text !== '') {
-          const input = 'http://192.168.1.102/demo/qr-data.php?&api_key=tpmat5ab3j7f9&device=2&item=' + encodeURIComponent(text);
-          window.location.href = input;
-          return false;
+    
+      document.querySelector('#camera-select').addEventListener('change', function (event) {
+        selectedCameraId = event.target.value;
+      });
+    
+      document.querySelector('#start-button').addEventListener('click', function () {
+        if (selectedCameraId) {
+          scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false, facingMode: 'environment' });
+          scanner.addListener('scan', function(content) {
+            var url = content.toLowerCase();
+            if (url !== '') {
+              window.location.href = 'http://192.168.1.102/demo/qr-data.php?&api_key=tpmat5ab3j7f9&device=2&item=' + encodeURIComponent(url); //192.168.1.102
+            } 
+            else {
+              alert('Invalid QR code content: ' + content);
+            }
+          });
+          scanner.start(cameras.find(function (camera) { return camera.id === selectedCameraId; }));
         }
-      }
+      });
     </script>
+    <strong><center>Allow access to use the camera and use the scanner horizontally on mobile for faster results!</center></strong> 
   </body>
 </html>
